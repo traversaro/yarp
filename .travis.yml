@@ -333,6 +333,7 @@ install:
   - if $TRAVIS_WITH_RTF; then git clone -b devel https://github.com/robotology/robot-testing; fi
   - if $TRAVIS_WITH_RTF; then cd robot-testing; fi
   - if $TRAVIS_WITH_RTF; then mkdir build; fi
+  - if $TRAVIS_WITH_RTF; then cd build; fi
   - if $TRAVIS_WITH_RTF; then cmake -G"${TRAVIS_CMAKE_GENERATOR}" -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} ..; fi
   - if $TRAVIS_WITH_RTF; then cmake --build . --config ${TRAVIS_BUILD_TYPE}; fi
   - if $TRAVIS_WITH_RTF; then sudo cmake --build . --config ${TRAVIS_BUILD_TYPE} --target install; fi
