@@ -103,16 +103,23 @@ bool NetworkClock::Private::read(ConnectionReader& reader)
     }
 
     timeMutex.lock();
+    bool previousTimestampAvailable = initted;
+    double oldTime = _time;
     sec = bot.get(0).asInt32();
     nsec = bot.get(1).asInt32();
     _time = sec + (nsec * 1e-9);
     initted = true;
     timeMutex.unlock();
+    
+    // If the clock time has been reset 
+    // (i.e. it jumped backward in time)
+    // release all the thread currently waiting
+    bool clockResetDetected = previousTimestampAvailable && (_time < _oldTime);
 
     listMutex.lock();
     auto waiter_it = waiters->begin();
     while (waiter_it != waiters->end()) {
-        if (waiter_it->first - _time < 1E-12) {
+        if (waiter_it->first - _time < 1E-12 || clockResetDetected) {
             Semaphore* waiterSemaphore = waiter_it->second;
             waiter_it = waiters->erase(waiter_it);
             if (waiterSemaphore != nullptr) {
