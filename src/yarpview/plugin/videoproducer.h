@@ -8,13 +8,18 @@
 
 #include <QObject>
 #include <QMutex>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#include <QVideoSink>
+typedef QVideoSink QAbstractVideoSurface;
+#else
 #include <QAbstractVideoSurface>
 #include <QVideoSurfaceFormat>
+#endif
 
 /*! \class VideoProducer
     \brief The videoproducer class
 
-    This class has a QAbstractVideoSurface where the video frame is rendered and used by the QML VideoOutput
+    This class has a property where the video frame is rendered and used by the QML VideoOutput
 */
 class VideoProducer : public QObject
 {
@@ -36,7 +41,9 @@ public:
 
 private:
     QAbstractVideoSurface *m_surface;
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QVideoSurfaceFormat *m_format;
+#endif
     QVideoFrame *m_frame;  // Stores the value of the current video frame to allow "color picking"
     QMutex mutex;
 

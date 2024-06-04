@@ -9,18 +9,22 @@
 VideoProducer::VideoProducer(QObject *parent) :
     QObject(parent)
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     m_format = nullptr;
+#endif
     m_surface = nullptr;
     m_frame = nullptr;
 }
 
 VideoProducer::~VideoProducer()
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     if(m_format)
     {
         delete m_format;
         m_format = nullptr;
     }
+#endif
 }
 
 
@@ -51,10 +55,17 @@ void VideoProducer::setVideoSurface(QAbstractVideoSurface *surface)
  */
 int VideoProducer::getWidth()
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     if(!m_format){
         return 0;
     }
     int w = m_format->frameWidth();
+#else
+    if(!m_frame) {
+        return 0;
+    }
+    int w = m_frame->width();
+#endif
     return w;
 }
 
@@ -63,10 +74,17 @@ int VideoProducer::getWidth()
  */
 int VideoProducer::getHeight()
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     if(!m_format){
         return 0;
     }
     int h = m_format->frameHeight();
+#else
+    if(!m_frame) {
+        return 0;
+    }
+    int h = m_frame->height();
+#endif
     return h;
 }
 
@@ -75,6 +93,7 @@ int VideoProducer::getHeight()
  */
 void VideoProducer::onNewVideoContentReceived(QVideoFrame *frame)
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     if (m_surface){
         if(m_surface->isActive() && (m_format->frameWidth() != frame->size().width() ||
                                      m_format->frameHeight() != frame->size().height()))
@@ -83,7 +102,6 @@ void VideoProducer::onNewVideoContentReceived(QVideoFrame *frame)
             delete m_format;
             m_format = nullptr;
         }
-
         if (!m_surface->isActive())
         {
             QSize s = frame->size();
@@ -118,7 +136,9 @@ void VideoProducer::onNewVideoContentReceived(QVideoFrame *frame)
             mutex.unlock();
         }
     }
+#else
 
+#endif
 }
 
 /*! \brief Pics the rgb value of the pixel specified by x and y and return it as a string
