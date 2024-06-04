@@ -73,6 +73,10 @@ First install the dependencies, download the code from the repository and then p
  export Qt5_DIR=/usr/local/opt/qt5/lib/cmake
  \endcode
 
+For compiling the Qt6 GUIS:
+ \code
+ brew install qt
+ \endcode
 
  \subsubsection install_mac_YARP_optional_GDK [Optional]: Installing GDK PIXBUF Dependencies
 

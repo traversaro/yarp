@@ -27,7 +27,7 @@ if(YARP_COMPILE_yarpllmgui)
     ConfigurePopup.qml
   )
 
-  qt5_add_resources(yarpllmgui_QRC_GEN_SRCS ${yarpllmgui_QRC_FILES})
+  qt_add_resources(yarpllmgui_QRC_GEN_SRCS ${yarpllmgui_QRC_FILES})
   qtyarp_use_qml_plugin()
 
   source_group(
@@ -66,10 +66,10 @@ if(YARP_COMPILE_yarpllmgui)
     YARP::YARP_os
     YARP::YARP_init
     YARP::YARP_dev
-    Qt5::Widgets
-    Qt5::Gui
-    Qt5::Qml
-    Qt5::Quick
+    Qt::Widgets
+    Qt::Gui
+    Qt::Qml
+    Qt::Quick
   )
 
   install(TARGETS yarpllmgui DESTINATION ${CMAKE_INSTALL_BINDIR})

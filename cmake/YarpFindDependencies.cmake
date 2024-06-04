@@ -309,6 +309,23 @@ set(Qt5_REQUIRED_VERSION 5.4)
 find_package(Qt5 ${Qt5_REQUIRED_VERSION} COMPONENTS Core Widgets Gui Quick Qml Multimedia Xml PrintSupport OPTIONAL_COMPONENTS DBus QUIET)
 checkandset_dependency(Qt5)
 
+if(NOT YARP_HAS_Qt5)
+  find_package(Qt6 COMPONENTS Core Widgets Gui Quick Qml Multimedia Xml PrintSupport OPTIONAL_COMPONENTS DBus QUIET)
+  checkandset_dependency(Qt6)
+endif()
+
+if(YARP_HAS_Qt5 OR YARP_HAS_Qt6)
+  set(YARP_HAS_Qt ON)
+endif()
+
+if(YARP_HAS_Qt5)
+  set(Qt_VERSION_MAJOR ${Qt5_VERSION_MAJOR})
+endif()
+
+if(YARP_HAS_Qt6)
+  set(Qt_VERSION_MAJOR ${Qt6_VERSION_MAJOR})
+endif()
+
 find_package(QCustomPlot QUIET)
 checkbuildandset_dependency(QCustomPlot Qt5)
 
@@ -504,7 +521,7 @@ yarp_dependent_option(
 
 yarp_dependent_option(
   YARP_COMPILE_GUIS "Do you want to compile GUIs" ON
-  "YARP_COMPILE_EXECUTABLES;YARP_HAS_Qt5" OFF
+  "YARP_COMPILE_EXECUTABLES;YARP_HAS_Qt" OFF
 )
 yarp_renamed_option(CREATE_GUIS YARP_COMPILE_GUIS) # Deprecated since YARP 3.2
 
@@ -522,39 +539,39 @@ yarp_dependent_option(
 )
 yarp_dependent_option(
   YARP_COMPILE_yarpview "Do you want to compile yarpview?" ON
-  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt5" OFF
+  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt" OFF
 )
 yarp_dependent_option(
   YARP_COMPILE_yarpmanager "Do you want to compile yarpmanager?" ON
-  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt5;YARP_HAS_TinyXML" OFF
+  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt;YARP_HAS_TinyXML" OFF
 )
 yarp_dependent_option(
   YARP_COMPILE_yarplogger "Do you want to create yarplogger?" ON
-  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt5" OFF
+  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt" OFF
 )
 yarp_dependent_option(
   YARP_COMPILE_yarpscope "Do you want to create yarpscope?" ON
-  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt5;YARP_HAS_TinyXML;YARP_HAS_QCustomPlot" OFF
+  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt;YARP_HAS_TinyXML;YARP_HAS_QCustomPlot" OFF
 )
 yarp_dependent_option(
   YARP_COMPILE_yarpdataplayer "Do you want to compile yarpdataplayer?" ON
-  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt5" OFF
+  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt" OFF
 )
 yarp_dependent_option(
   YARP_COMPILE_yarpmotorgui "Do you want to compile yarpmotorgui?" ON
-  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt5" OFF
+  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt" OFF
 )
 yarp_dependent_option(
   YARP_COMPILE_yarpbatterygui "Do you want to compile yarpbatterygui?" ON
-  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt5" OFF
+  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt" OFF
 )
 yarp_dependent_option(
   YARP_COMPILE_yarpaudiocontrolgui "Do you want to compile yarpaudiocontrolgui?" ON
-  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt5" OFF
+  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt" OFF
 )
 yarp_dependent_option(
   YARP_COMPILE_yarpmobilebasegui "Do you want to compile yarpmobilebasegui?" ON
-  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt5" OFF
+  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt" OFF
 )
 yarp_dependent_option(
   YARP_COMPILE_yarplaserscannergui  "Do you want to compile yarplaserscannergui?" ON
@@ -566,7 +583,7 @@ yarp_dependent_option(
 )
 yarp_dependent_option(
   YARP_COMPILE_yarpviz "Do you want to compile yarpviz?" ON
-  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt5;YARP_HAS_Graphviz;YARP_HAS_QGVCore" OFF
+  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt;YARP_HAS_Graphviz;YARP_HAS_QGVCore" OFF
 )
 yarp_dependent_option(
   YARP_COMPILE_yarpconnectionsinfo "Do you want to compile yarpconnectionsinfo?" ON
@@ -578,7 +595,7 @@ yarp_dependent_option(
 )
 yarp_dependent_option(
   YARP_COMPILE_yarpllmgui "Do you want to compile yarpllmgui" ON
-  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt5" OFF
+  "YARP_COMPILE_EXECUTABLES;YARP_COMPILE_GUIS;YARP_HAS_Qt" OFF
 )
 
 ################################################################################
@@ -631,6 +648,7 @@ print_dependency(TinyXML)
 print_dependency(xmlrpcpp)
 print_dependency(hmac)
 print_dependency(Qt5)
+print_dependency(Qt6)
 print_dependency(QCustomPlot)
 print_dependency(Graphviz)
 print_dependency(QGVCore)

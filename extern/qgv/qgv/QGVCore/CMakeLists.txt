@@ -54,9 +54,9 @@ IF(BINDINGS_QT4)
 	# QT4_ADD_RESOURCES(qgvlib_RCCS ${qgvlib_QRC})
 ENDIF(BINDINGS_QT4)
 IF(BINDINGS_QT5)
-	QT5_WRAP_UI(qgvlib_UI_H ${qgvlib_UI})
+	qt_wrap_ui(qgvlib_UI_H ${qgvlib_UI})
 	QT5_ADD_TRANSLATION(qgvlib_TRANS ${qgvlib_TS})
-	QT5_ADD_RESOURCES(qgvlib_RCCS ${qgvlib_QRC})
+	qt_add_resources(qgvlib_RCCS ${qgvlib_QRC})
 ENDIF(BINDINGS_QT5)
 
 ADD_LIBRARY(qgvcore SHARED

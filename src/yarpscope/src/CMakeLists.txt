@@ -19,7 +19,7 @@ set(yarpscope_QML_FILES
   qml/QtYARPScope/main.qml
 )
 
-qt5_add_resources(yarpscope_QRC_GEN_SRCS ${yarpscope_QRC_FILES})
+qt_add_resources(yarpscope_QRC_GEN_SRCS ${yarpscope_QRC_FILES})
 
 source_group(
   TREE "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -57,9 +57,9 @@ target_sources(yarpscope
 
 target_link_libraries(yarpscope
   PRIVATE
-    Qt5::Widgets
-    Qt5::Qml
-    Qt5::Quick
+    Qt::Widgets
+    Qt::Qml
+    Qt::Quick
 )
 
 target_include_directories(yarpscope PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/qtquick2applicationviewer)

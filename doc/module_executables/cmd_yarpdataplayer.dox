@@ -22,7 +22,7 @@ to synchronize the sending of the data as if the robot was present.
 \section yarpdataplayer_lib Libraries
 
 - OpenCV libraries.
-- GTKMM or Qt5 libraries.
+- Qt5 or Qt6 libraries.
 
 \section yarpdataplayer_running Running
 

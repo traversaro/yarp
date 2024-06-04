@@ -92,6 +92,19 @@ sudo apt-get install qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev \
   qml-module-qt-labs-settings
 ~~~
 
+#### Qt6                                                  {#install_qt6_debian}
+
+On Debian/Ubuntu the following Qt6 packages are required to build and run YARP
+GUIs:
+
+~~~{.sh}
+sudo apt-get install qtbase6-dev qtdeclarative6-dev qtmultimedia6-dev \
+  qml6-module-qtquick2 qml6-module-qtquick-window2 \
+  qml6-module-qtmultimedia qml6-module-qtquick-dialogs \
+  qml6-module-qtquick-controls qml6-module-qt-labs-folderlistmodel \
+  qml6-module-qt-labs-settings
+~~~
+
 
 #### QCustomPlot                                   {#install_qcustomplot_debian}
 

@@ -20,9 +20,9 @@ if(YARP_COMPILE_yarpbatterygui)
 
   set(yarpbatterygui_UI_FILES display.ui)
 
-  qt5_add_resources(yarpbatterygui_QRC_GEN_SRCS ${yarpbatterygui_QRC_FILES})
+  qt_add_resources(yarpbatterygui_QRC_GEN_SRCS ${yarpbatterygui_QRC_FILES})
 
-  qt5_wrap_ui(yarpbatterygui_UI_GEN_SRCS ${yarpbatterygui_UI_FILES})
+  qt_wrap_ui(yarpbatterygui_UI_GEN_SRCS ${yarpbatterygui_UI_FILES})
 
   source_group(
     TREE "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -71,8 +71,8 @@ if(YARP_COMPILE_yarpbatterygui)
       YARP::YARP_init
       YARP::YARP_sig
       YARP::YARP_dev
-      Qt5::Widgets
-      Qt5::Gui
+      Qt::Widgets
+      Qt::Gui
   )
 
   install(

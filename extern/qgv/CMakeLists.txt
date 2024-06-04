@@ -45,7 +45,7 @@ target_include_directories(YARP_priv_qgvcore
     ${CMAKE_CURRENT_BINARY_DIR}
 )
 
-target_link_libraries(YARP_priv_qgvcore PUBLIC Qt5::Widgets)
+target_link_libraries(YARP_priv_qgvcore PUBLIC Qt::Widgets)
 
 target_include_directories(YARP_priv_qgvcore PRIVATE ${Graphviz_INCLUDE_DIR})
 target_link_libraries(YARP_priv_qgvcore PRIVATE ${Graphviz_LIBRARIES})
