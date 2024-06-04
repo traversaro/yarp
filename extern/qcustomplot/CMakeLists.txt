@@ -20,7 +20,7 @@ target_sources(YARP_priv_qcustomplot PRIVATE ${qcustomplot_SRCS})
 
 target_include_directories(YARP_priv_qcustomplot PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/qcustomplot>)
 
-target_link_libraries(YARP_priv_qcustomplot PUBLIC Qt5::Widgets)
+target_link_libraries(YARP_priv_qcustomplot PUBLIC Qt::Widgets)
 
 set_property(TARGET YARP_priv_qcustomplot PROPERTY FOLDER "Libraries/External")
 

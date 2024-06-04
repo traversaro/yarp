@@ -25,7 +25,7 @@ file(GLOB_RECURSE ContainerExample_SRCS *.cpp)
 file(GLOB_RECURSE ContainerExample_HDRS *.h)
 file(GLOB ContainerExample_QRC_FILES *.qrc)
 
-qt5_add_resources(ContainerExample_QRC_GEN_FILES ${ContainerExample_QRC_FILES})
+qt_add_resources(ContainerExample_QRC_GEN_FILES ${ContainerExample_QRC_FILES})
 
 source_group(
   "Resources Files"
@@ -45,9 +45,9 @@ target_sources(ContainerExample
 )
 target_link_libraries(ContainerExample
   PRIVATE
-    Qt5::Widgets
-    Qt5::Qml
-    Qt5::Quick
+    Qt::Widgets
+    Qt::Qml
+    Qt::Quick
 )
 
 

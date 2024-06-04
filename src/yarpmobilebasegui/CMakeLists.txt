@@ -25,9 +25,9 @@ if(YARP_COMPILE_yarpmobilebasegui)
     display.ui
   )
 
-  qt5_add_resources(yarpmobilebasegui_QRC_GEN_SRCS ${yarpmobilebasegui_QRC_FILES})
+  qt_add_resources(yarpmobilebasegui_QRC_GEN_SRCS ${yarpmobilebasegui_QRC_FILES})
 
-  qt5_wrap_ui(yarpmobilebasegui_UI_GEN_SRCS ${yarpmobilebasegui_UI_FILES})
+  qt_wrap_ui(yarpmobilebasegui_UI_GEN_SRCS ${yarpmobilebasegui_UI_FILES})
 
   source_group(
     TREE "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -76,8 +76,8 @@ if(YARP_COMPILE_yarpmobilebasegui)
       YARP::YARP_init
       YARP::YARP_sig
       YARP::YARP_dev
-      Qt5::Widgets
-      Qt5::Gui
+      Qt::Widgets
+      Qt::Gui
   )
 
   install(

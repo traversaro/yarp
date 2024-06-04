@@ -28,7 +28,7 @@ set(QtYARPViewPlugin_QML_FILES
   YARPViewStatusBar.qml
 )
 
-qt5_add_resources(QtYARPViewPlugin_QRC_GEN_SRCS ${QtYARPViewPlugin_QRC_FILES})
+qt_add_resources(QtYARPViewPlugin_QRC_GEN_SRCS ${QtYARPViewPlugin_QRC_FILES})
 
 source_group(
   TREE "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -69,10 +69,10 @@ target_link_libraries(QtYARPViewPlugin
     YARP::YARP_os
     YARP::YARP_init
     YARP::YARP_sig
-    Qt5::Widgets
-    Qt5::Qml
-    Qt5::Quick
-    Qt5::Multimedia
+    Qt::Widgets
+    Qt::Qml
+    Qt::Quick
+    Qt::Multimedia
 )
 
 qtyarp_qml_plugin(QtYARPViewPlugin "${QtYARPViewPlugin_QMLDIR}")

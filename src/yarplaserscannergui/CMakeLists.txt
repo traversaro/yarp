@@ -15,8 +15,8 @@ if(YARP_COMPILE_yarplaserscannergui)
 
   set(yarplaserscannergui_SRCS main.cpp)
 
- # qt5_add_resources(yarplaserscannergui_QRC_GEN_SRCS ${yarplaserscannergui_QRC_FILES})
-  qt5_wrap_ui(yarplaserscannergui_UI_GEN_SRCS ${yarplaserscannerguii_UI_FILES})
+ # qt_add_resources(yarplaserscannergui_QRC_GEN_SRCS ${yarplaserscannergui_QRC_FILES})
+  qt_wrap_ui(yarplaserscannergui_UI_GEN_SRCS ${yarplaserscannerguii_UI_FILES})
 
   source_group(
     TREE "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -58,8 +58,8 @@ if(YARP_COMPILE_yarplaserscannergui)
       YARP::YARP_init
       YARP::YARP_sig
       YARP::YARP_dev
-      Qt5::Widgets
-      Qt5::Gui
+      Qt::Widgets
+      Qt::Gui
   )
 
   target_include_directories(yarplaserscannergui PRIVATE ${OpenCV_INCLUDE_DIRS})

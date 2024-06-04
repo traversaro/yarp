@@ -20,7 +20,7 @@ set(yarpview_QML_FILES
   qml/QtYARPView/mainCompact.qml
 )
 
-qt5_add_resources(yarpview_QRC_GEN_SRCS ${yarpview_QRC_FILES})
+qt_add_resources(yarpview_QRC_GEN_SRCS ${yarpview_QRC_FILES})
 
 source_group(
   TREE "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -56,9 +56,9 @@ target_sources(yarpview
 target_include_directories(yarpview PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/qtquick2applicationviewer)
 
 target_link_libraries(yarpview
-  Qt5::Widgets
-  Qt5::Qml
-  Qt5::Quick
+  Qt::Widgets
+  Qt::Qml
+  Qt::Quick
 )
 
 install(

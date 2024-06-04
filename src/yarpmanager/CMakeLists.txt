@@ -122,8 +122,8 @@ if(YARP_COMPILE_yarpmanager)
 
 
   # Generated files
-  qt5_add_resources(yarpmanager_QRC_GEN_SRCS ${yarpmanager_QRC_FILES})
-  qt5_wrap_ui(yarpmanager_UI_GEN_SRCS ${yarpmanager_UI_FILES})
+  qt_add_resources(yarpmanager_QRC_GEN_SRCS ${yarpmanager_QRC_FILES})
+  qt_wrap_ui(yarpmanager_UI_GEN_SRCS ${yarpmanager_UI_FILES})
 
   source_group(
     TREE "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -184,8 +184,8 @@ if(YARP_COMPILE_yarpmanager)
       YARP::YARP_init
       YARP::YARP_manager
       YARP::YARP_profiler
-      Qt5::Widgets
-      Qt5::Gui
+      Qt::Widgets
+      Qt::Gui
   )
 
   install(TARGETS yarpmanager COMPONENT utilities DESTINATION ${CMAKE_INSTALL_BINDIR})

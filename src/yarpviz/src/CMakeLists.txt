@@ -34,8 +34,8 @@ set(yarpviz_qt_UI_FILES
   batchqosconfdialog.ui
 )
 
-qt5_add_resources(yarpviz_qt_QRC_GEN_SRCS ${yarpviz_qt_QRC_FILES})
-qt5_wrap_ui(yarpviz_qt_UI_GEN_SRCS ${yarpviz_qt_UI_FILES})
+qt_add_resources(yarpviz_qt_QRC_GEN_SRCS ${yarpviz_qt_QRC_FILES})
+qt_wrap_ui(yarpviz_qt_UI_GEN_SRCS ${yarpviz_qt_UI_FILES})
 
 source_group(
   "Source Files"
@@ -81,8 +81,8 @@ target_link_libraries(yarpviz
     YARP::YARP_os
     YARP::YARP_init
     YARP::YARP_profiler
-    Qt5::Widgets
-    Qt5::Gui
+    Qt::Widgets
+    Qt::Gui
 )
 
 target_include_directories(yarpviz SYSTEM PRIVATE ${QGVCore_INCLUDE_DIRS})

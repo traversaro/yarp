@@ -34,8 +34,8 @@ if(YARP_COMPILE_yarpaudiocontrolgui)
       YARP::YARP_init
       YARP::YARP_sig
       YARP::YARP_dev
-      Qt5::Widgets
-      Qt5::Gui
+      Qt::Widgets
+      Qt::Gui
   )
 
   install(

@@ -15,8 +15,8 @@ if(YARP_COMPILE_yarplogger)
   file(GLOB yarplogger_QRC_FILES *.qrc)
   file(GLOB yarplogger_UI_FILES *.ui)
 
-  qt5_add_resources(yarplogger_QRC_GEN_SRCS ${yarplogger_QRC_FILES})
-  qt5_wrap_ui(yarplogger_UI_GEN_SRCS ${yarplogger_UI_FILES})
+  qt_add_resources(yarplogger_QRC_GEN_SRCS ${yarplogger_QRC_FILES})
+  qt_wrap_ui(yarplogger_UI_GEN_SRCS ${yarplogger_UI_FILES})
 
   source_group(
     TREE "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -64,8 +64,8 @@ if(YARP_COMPILE_yarplogger)
       YARP::YARP_os
       YARP::YARP_init
       YARP::YARP_logger
-      Qt5::Widgets
-      Qt5::Gui
+      Qt::Widgets
+      Qt::Gui
   )
 
   install(

@@ -30,7 +30,7 @@ if(NOT SKIP_upowerBattery)
     YARP_dev
   )
 
-  target_link_libraries(yarp_upowerBattery PRIVATE Qt5::DBus)
+  target_link_libraries(yarp_upowerBattery PRIVATE Qt::DBus)
   list(APPEND YARP_${YARP_PLUGIN_MASTER}_PRIVATE_DEPS "Qt5 COMPONENTS DBus")
 
   yarp_install(
