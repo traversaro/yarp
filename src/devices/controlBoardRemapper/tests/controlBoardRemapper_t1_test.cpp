@@ -241,6 +241,11 @@ TEST_CASE("dev::ControlBoardRemapperTest", "[yarp::dev]")
 
     Network::setLocalMode(true);
 
+    // Carrier used for connection
+    YARP_REQUIRE_PLUGIN("shmem", "carrier");
+    YARP_REQUIRE_PLUGIN("unix_stream", "carrier");
+    std::string carrier = GENERATE("tcp", "fast_tcp", "shmem", "unix_stream");
+
     SECTION("Test the controlboard remapper")
     {
         // We first allocate three fakeMotionControl boards
@@ -379,6 +384,7 @@ TEST_CASE("dev::ControlBoardRemapperTest", "[yarp::dev]")
         remoteAxesList.addString("axisC3");
         remoteAxesList.addString("axisA2");
 
+
         Bottle remoteControlBoards;
         Bottle & remoteControlBoardsList = remoteControlBoards.addList();
         remoteControlBoardsList.addString("/testRemapperRobot/a");
@@ -390,6 +396,7 @@ TEST_CASE("dev::ControlBoardRemapperTest", "[yarp::dev]")
 
         Property & opts = pRemoteRemapper.addGroup("REMOTE_CONTROLBOARD_OPTIONS");
         opts.put("writeStrict","on");
+        opts.put("carrier", carrier);
 
         REQUIRE(ddRemoteRemapper.open(pRemoteRemapper)); // remotecontrolboardremapper open reported successful, testing it
 
@@ -565,6 +572,7 @@ TEST_CASE("dev::ControlBoardRemapperTest", "[yarp::dev]")
 
         Property & opts = pRemoteRemapper.addGroup("REMOTE_CONTROLBOARD_OPTIONS");
         opts.put("writeStrict","on");
+        opts.put("carrier", carrier);
 
         REQUIRE(ddRemoteRemapper.open(pRemoteRemapper)); // remotecontrolboardremapper open reported successful, testing it
 
