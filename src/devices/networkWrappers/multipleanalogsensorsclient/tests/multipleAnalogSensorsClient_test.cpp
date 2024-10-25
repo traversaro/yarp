@@ -28,11 +28,12 @@ TEST_CASE("dev::MultipleAnalogSensorsClientTest", "[yarp::dev]")
     YARP_REQUIRE_PLUGIN("multipleanalogsensorsserver", "device");
     YARP_REQUIRE_PLUGIN("multipleanalogsensorsclient", "device");
 
-//#if defined(DISABLE_FAILING_TESTS)
-//    YARP_SKIP_TEST("Skipping failing tests")
-//#endif
-
     Network::setLocalMode(true);
+
+    // Carrier used for connection
+    YARP_REQUIRE_PLUGIN("shmem", "carrier");
+    YARP_REQUIRE_PLUGIN("unix_stream", "carrier");
+    std::string carrier = GENERATE("tcp", "fast_tcp", "shmem", "unix_stream");
 
     SECTION("Test the multiple analog sensors device on a single IMU (deferred attach)")
     {
@@ -74,6 +75,7 @@ TEST_CASE("dev::MultipleAnalogSensorsClientTest", "[yarp::dev]")
         pClient.put("local", "/test/mas/client");
         // Increase timeout time because we don't know the load of the machine on which the test will run
         pClient.put("timeout", 1.0);
+        pClient.put("carrier", carrier);
 
         PolyDriver client;
         REQUIRE(client.open(pClient)); // multipleanalogsensorsclient open reported successful
