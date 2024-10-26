@@ -9,6 +9,7 @@
 
 #include <yarp/os/Log.h>
 
+#include <mutex>
 #include <string>
 
 #ifdef YARP_HAS_ACE
@@ -49,6 +50,9 @@ public:
 #else
     void* dll;
 #endif
+    // Ensure that there are no race condition when two
+    // different threads both call the close method
+    std::mutex closeMutex;
     std::string error;
 };
 
@@ -100,6 +104,7 @@ bool SharedLibrary::open(const char* filename)
 
 bool SharedLibrary::close()
 {
+    std::lock_guard<std::mutex> lockGuard(implementation->closeMutex);
     int result = 0;
     if (implementation->dll != nullptr) {
 #ifdef YARP_HAS_ACE
