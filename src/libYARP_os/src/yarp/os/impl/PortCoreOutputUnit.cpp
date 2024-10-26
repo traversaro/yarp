@@ -147,6 +147,11 @@ void PortCoreOutputUnit::runSingleThreaded()
 
 void PortCoreOutputUnit::closeBasic()
 {
+    // closeBasic can be called by both the PortCore thread
+    // or the PortCoreOutputUnit thread (if one was requested
+    // by calling enableBackground Write), to avoid
+    // race condition during close, we protect it with a mutex
+    std::lock_guard<std::mutex> lockGuard(closeBasicMutex);
     bool waitForOther = false;
     if (op != nullptr) {
         op->getConnection().prepareDisconnect();

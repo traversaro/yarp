@@ -117,6 +117,7 @@ private:
     yarp::os::Semaphore phase;        ///< let main thread kick sending thread
     yarp::os::Semaphore activate;     ///< signal when we have a new tracker
     std::mutex trackerMutex; ///< protect the tracker during outside access
+    std::mutex closeBasicMutex; ///< protect the closeBasic method
     const yarp::os::PortWriter* cachedWriter;   ///< the message the send
     yarp::os::PortReader *cachedReader;   ///< where to put a reply
     const yarp::os::PortWriter* cachedCallback; ///< where to sent commencement and
