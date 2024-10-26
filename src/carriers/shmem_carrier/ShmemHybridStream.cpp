@@ -88,6 +88,8 @@ int ShmemHybridStream::accept()
 
     ShmemPacket_t send_conn_data;
     send_conn_data.command = ACKNOWLEDGE;
+    // Size is not used here, but let's set it to avoid sending non-initialized data
+    send_conn_data.size = 0;
     if (m_SockStream.send_n(&send_conn_data, sizeof send_conn_data) <= 0) {
         yCError(SHMEMCARRIER, "ShmemHybridStream socket writing error");
         close();
